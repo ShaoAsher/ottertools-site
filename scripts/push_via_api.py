@@ -28,19 +28,37 @@ def api(method, path, payload=None, raw=False):
     data = None
     if payload is not None:
         data = json.dumps(payload).encode("utf-8") if not raw else payload
-    req = urllib.request.Request(BASE + path, data=data, method=method)
-    req.add_header("Authorization", f"Bearer {TOKEN}")
-    req.add_header("Accept", "application/vnd.github+json")
-    req.add_header("X-GitHub-Api-Version", "2022-11-28")
-    if payload is not None:
-        req.add_header("Content-Type", "application/json")
-    try:
-        with urllib.request.urlopen(req, timeout=300) as r:
-            return json.loads(r.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8", "replace")
-        print(f"HTTP {e.code} on {method} {path}: {body[:500]}", file=sys.stderr)
-        raise
+    last_err = None
+    for attempt in range(1, 4):
+        req = urllib.request.Request(BASE + path, data=data, method=method)
+        req.add_header("Authorization", f"Bearer {TOKEN}")
+        req.add_header("Accept", "application/vnd.github+json")
+        req.add_header("X-GitHub-Api-Version", "2022-11-28")
+        if payload is not None:
+            req.add_header("Content-Type", "application/json")
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", "replace")
+            # 400（GitHub 提示 resubmit）与 5xx 视为可重试；4xx 其余直接失败
+            if e.code == 400 or e.code >= 500:
+                last_err = e
+                print(f"HTTP {e.code} on {method} {path}，重试: {body[:200]}", file=sys.stderr)
+                if attempt < 3:
+                    import time
+                    time.sleep(5 * attempt)
+                continue
+            print(f"HTTP {e.code} on {method} {path}: {body[:500]}", file=sys.stderr)
+            raise
+        except (urllib.error.URLError, OSError) as e:
+            # 直连 GitHub 网络抖动：SSL EOF / RemoteDisconnected，退避后重试
+            last_err = e
+            print(f"网络错误（第 {attempt} 次）{method} {path}: {e}", file=sys.stderr)
+            if attempt < 3:
+                import time
+                time.sleep(5 * attempt)
+    raise last_err
 
 
 def tracked_files():
