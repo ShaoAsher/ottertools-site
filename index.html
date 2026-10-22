@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>水獭工具 OtterTools — 旧 Mac，新速度</title>
+    <meta
+      name="description"
+      content="水獭工具是一款 macOS 系统工具箱：体检、清垃圾、管启动项、清隐私痕迹。免费、轻量，Flutter 写的。"
+    />
+    <link rel="icon" href="assets/img/icon.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── 顶栏 ───────────────────────────────────────────── -->
+    <header class="nav" id="nav">
+      <a class="nav-brand" href="#top">
+        <span class="nav-mark"><img src="assets/img/icon.png" alt="" /></span>
+        <span class="nav-name">水獭工具</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">功能</a>
+        <a href="#themes">主题</a>
+        <a href="#video">短片</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+      <a class="btn btn-sm" href="#download">下载</a>
+    </header>
+
+    <!-- ── 首屏 ───────────────────────────────────────────── -->
+    <section class="hero" id="top">
+      <div class="hero-grid-bg"></div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <div class="chip-mono">macOS 10.15+ · Apple Silicon</div>
+          <h1>
+            Mac 用了三年<br />
+            <em>越来越卡</em>
+          </h1>
+          <p class="hero-sub">
+            先别急着换新。装个小工具，把攒了三年的垃圾、开机项和浏览器痕迹理一理，
+            它还能再跑好几年。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-lg" href="#download">
+              免费下载
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path
+                  d="M12 4v12m0 0 5-5m-5 5-5-5M5 20h14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="square"
+                />
+              </svg>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#video">看 1 分钟介绍</a>
+          </div>
+          <p class="hero-note">没有账号、没有订阅、不弹广告。装上就能用。</p>
+        </div>
+
+        <div class="hero-visual">
+          <div class="screen-card">
+            <div class="screen-bar">
+              <span></span><span></span><span></span>
+              <div class="screen-title">系统优化首页</div>
+            </div>
+            <img src="assets/img/home.jpg" alt="水獭工具首页：四角指标与健康环" />
+          </div>
+          <div class="float-stat">
+            <div class="fs-label">一次扫描</div>
+            <div class="fs-num">144<i>GB</i></div>
+            <div class="fs-foot">可释放空间</div>
+          </div>
+          <div class="float-otter">
+            <img src="assets/img/otter.png" alt="小懒" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 数字条 ─────────────────────────────────────────── -->
+    <section class="stats">
+      <div class="wrap stats-row">
+        <div class="stat">
+          <div class="stat-num">5</div>
+          <div class="stat-label">个主功能，都在一个窗口里</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">套主题，随时换</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">0</div>
+          <div class="stat-label">账号、广告、后台遥测</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">⌘K</div>
+          <div class="stat-label">呼出命令面板，直达任意工具</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 功能 ───────────────────────────────────────────── -->
+    <section class="features" id="features">
+      <div class="wrap">
+        <header class="sec-head">
+          <div class="kicker">它到底能做什么</div>
+          <h2>五件事，做得挺细</h2>
+          <p>不是那种“一键加速”然后啥也没变的软件。每一项都能看到具体删了什么、释放了多少。</p>
+        </header>
+
+        <div class="feat-grid">
+          <article class="feat feat-wide">
+            <div class="feat-txt">
+              <div class="feat-index">01</div>
+              <h3>体检中心</h3>
+              <p>
+                打开先给你一份体检：健康分、CPU、内存、磁盘、网速四角都在，问题按风险分好类，
+                预计能释放多少空间写在最上面。
+              </p>
+              <ul class="ticks">
+                <li>风险分级的问题清单，不是一堆看不懂的条目</li>
+                <li>能导出 Markdown 报告，换个电脑也带着走</li>
+                <li>近 7 天磁盘 / 内存 / CPU 趋势，按小时采样</li>
+              </ul>
+            </div>
+            <div class="feat-shot">
+              <img src="assets/img/home.jpg" alt="体检中心界面" />
+            </div>
+          </article>
+
+          <article class="feat">
+            <div class="feat-txt">
+              <div class="feat-index">02</div>
+              <h3>磁盘优化</h3>
+              <p>垃圾、大文件、软件分三栏。删之前能看到路径，能直接在 Finder 里打开确认。</p>
+              <ul class="ticks">
+                <li>iOS 备份、Time Machine 快照、截图录屏、旧安装包都能扫</li>
+                <li>重复文件按文件名 + 大小预筛，再算内容哈希，不会误删</li>
+                <li>可以设白名单，某些文件夹它永远不碰</li>
+              </ul>
+            </div>
+            <div class="feat-shot">
+              <img src="assets/img/disk_result.jpg" alt="磁盘扫描结果" />
+            </div>
+          </article>
+
+          <article class="feat">
+            <div class="feat-txt">
+              <div class="feat-index">03</div>
+              <h3>启动项管理</h3>
+              <p>开机自启都列在一页里，哪些该留、哪些纯属厂家塞的，一眼能看出来。</p>
+              <ul class="ticks">
+                <li>开关就是开关，点了立刻生效</li>
+                <li>不认识的条目带来源信息，不会让你盲目关掉系统组件</li>
+              </ul>
+            </div>
+            <div class="feat-shot">
+              <img src="assets/img/startup.jpg" alt="启动项管理" />
+            </div>
+          </article>
+
+          <article class="feat feat-wide feat-flip">
+            <div class="feat-txt">
+              <div class="feat-index">04</div>
+              <h3>隐私清理</h3>
+              <p>
+                浏览器历史、聊天记录、系统使用痕迹，扫出来一条条列着，你勾哪条它清哪条。
+                谨慎项默认不勾——这个决定权留给你。
+              </p>
+              <ul class="ticks">
+                <li>真扫真清，不是只加个“已清理”的提示</li>
+                <li>清理前可以预览，清完有操作日志</li>
+              </ul>
+            </div>
+            <div class="feat-shot">
+              <img src="assets/img/privacy.jpg" alt="隐私清理界面" />
+            </div>
+          </article>
+
+          <article class="feat feat-half">
+            <div class="feat-txt">
+              <div class="feat-index">05</div>
+              <h3>内存加速</h3>
+              <p>按进程看谁在吃内存，结束掉不该跑的。菜单栏常驻一个内存百分比，抬头就能看见。</p>
+            </div>
+            <div class="feat-shot">
+              <img src="assets/img/memory.jpg" alt="内存进程列表" />
+            </div>
+          </article>
+
+          <article class="feat feat-half feat-dark">
+            <div class="feat-txt">
+              <div class="feat-index">06</div>
+              <h3>还有一些顺手的小东西</h3>
+              <p>不占侧栏，⌘K 就能叫出来：</p>
+              <ul class="ticks">
+                <li>剪贴板历史，⌥V 呼出</li>
+                <li>快捷开关 · Wi-Fi 诊断</li>
+                <li>图片压缩，拖进去就小一半</li>
+                <li>软件卸载带残留检测</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 主题 ───────────────────────────────────────────── -->
+    <section class="themes" id="themes">
+      <div class="wrap">
+        <header class="sec-head sec-head-light">
+          <div class="kicker">长相这件事</div>
+          <h2>四套皮，白天黑夜都合适</h2>
+          <p>浅色的清新简约、深色的赛博科技，还有午夜蓝。跟系统走也行。</p>
+        </header>
+
+        <div class="theme-row">
+          <button class="theme-card is-active" data-theme="fresh">
+            <div class="tc-preview tc-fresh">
+              <div class="tc-bar"></div>
+              <div class="tc-ring"></div>
+              <div class="tc-line"></div>
+              <div class="tc-line short"></div>
+            </div>
+            <div class="tc-name">清新简约</div>
+            <div class="tc-sub">薄荷绿 · 白天用</div>
+          </button>
+
+          <button class="theme-card" data-theme="cyber">
+            <div class="tc-preview tc-cyber">
+              <div class="tc-bar"></div>
+              <div class="tc-ring"></div>
+              <div class="tc-line"></div>
+              <div class="tc-line short"></div>
+            </div>
+            <div class="tc-name">赛博科技</div>
+            <div class="tc-sub">霓虹青 · 夜里用</div>
+          </button>
+
+          <button class="theme-card" data-theme="midnight">
+            <div class="tc-preview tc-midnight">
+              <div class="tc-bar"></div>
+              <div class="tc-ring"></div>
+              <div class="tc-line"></div>
+              <div class="tc-line short"></div>
+            </div>
+            <div class="tc-name">午夜蓝</div>
+            <div class="tc-sub">深蓝 · 不刺眼</div>
+          </button>
+
+          <button class="theme-card" data-theme="system">
+            <div class="tc-preview tc-system">
+              <div class="tc-half light"></div>
+              <div class="tc-half dark"></div>
+              <div class="tc-ring"></div>
+            </div>
+            <div class="tc-name">跟随系统</div>
+            <div class="tc-sub">自动切换</div>
+          </button>
+        </div>
+
+        <div class="theme-showcase">
+          <img id="themeShot" src="assets/img/theme_fresh.jpg" alt="界面截图" />
+          <div class="ts-caption">
+            <span id="themeCaption">清新简约 · 白卡片、青绿色、字看得清</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 短片 ───────────────────────────────────────────── -->
+    <section class="video-sec" id="video">
+      <div class="wrap">
+        <header class="sec-head">
+          <div class="kicker">1 分钟看完</div>
+          <h2>懒得读？看片</h2>
+        </header>
+
+        <div class="video-frame">
+          <video
+            id="promoVideo"
+            src="assets/video/ottertools-promo.mp4"
+            poster="assets/img/home.jpg"
+            preload="metadata"
+            playsinline
+          ></video>
+          <button class="video-play" id="videoPlay" aria-label="播放">
+            <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true">
+              <path d="M8 5v14l11-7z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+        <p class="video-note">63 秒 · 无旁白 · 建议开声音（就是几个音效）</p>
+      </div>
+    </section>
+
+    <!-- ── 下载 ───────────────────────────────────────────── -->
+    <section class="download" id="download">
+      <div class="wrap dl-inner">
+        <div class="dl-copy">
+          <div class="kicker">准备好了就装</div>
+          <h2>现在，给你的 Mac<br />做个体检</h2>
+          <p>
+            下载下来是个 DMG，拖进「应用程序」就行。第一次打开如果提示来源不明，
+            右键点「打开」，或者在「系统设置 → 隐私与安全性」里放行一下。
+          </p>
+
+          <div class="dl-buttons">
+            <a class="btn btn-lg" href="assets/水獭工具-1.0.0-arm64.dmg" download>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path
+                  d="M12 4v12m0 0 5-5m-5 5-5-5M5 20h14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="square"
+                />
+              </svg>
+              下载 macOS 版 <span class="btn-meta">v1.0.0 · ARM64 · 19 MB</span>
+            </a>
+            <span class="btn btn-lg btn-disabled">Windows 版 · 打包中</span>
+          </div>
+
+          <p class="dl-note">Intel 机器暂时需要自己编译，源码在下面。</p>
+        </div>
+
+        <div class="dl-otter">
+          <img src="assets/img/otter.png" alt="小懒" />
+          <div class="dl-bubble">累了就让我来</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 常见问题 ───────────────────────────────────────── -->
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <header class="sec-head">
+          <div class="kicker">你可能想问</div>
+          <h2>几个老问题</h2>
+        </header>
+
+        <div class="faq-list">
+          <details open>
+            <summary>真的免费吗？后面会不会收费？</summary>
+            <p>
+              免费。没有内购、没有订阅、没有"高级版"。功能都在，不锁。
+            </p>
+          </details>
+          <details>
+            <summary>会不会误删我的文件？</summary>
+            <p>
+              清理前每一项都能展开看路径，重复文件比对的是内容哈希而不是名字，
+              白名单里的目录它不碰。另外卸载软件时，用户数据只丢进废纸篓，不会直接抹掉。
+            </p>
+          </details>
+          <details>
+            <summary>它会上传我的数据吗？</summary>
+            <p>
+              不会。没有账号体系，没有遥测，清理和扫描都在本机做。
+            </p>
+          </details>
+          <details>
+            <summary>这名字怎么来的？</summary>
+            <p>
+              OtterTools 直译就是水獭工具。吉祥物是只蜷成一团的水獭，趴在那儿一动不动，
+              顺便表达一下我们希望它替你干活、你继续躺着的态度。
+            </p>
+          </details>
+          <details>
+            <summary>支持 Windows 吗？</summary>
+            <p>
+              工程里 Windows 部分已经跑通了，安装包还在打。目前 macOS 版最完整。
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 页脚 ───────────────────────────────────────────── -->
+    <footer class="foot">
+      <div class="wrap foot-inner">
+        <div class="foot-brand">
+          <img src="assets/img/icon.png" alt="" />
+          <div>
+            <div class="foot-name">水獭工具 OtterTools</div>
+            <div class="foot-tag">旧 Mac，新速度</div>
+          </div>
+        </div>
+        <div class="foot-links">
+          <a href="#features">功能</a>
+          <a href="#themes">主题</a>
+          <a href="#video">短片</a>
+          <a href="#download">下载</a>
+        </div>
+        <div class="foot-meta">用 Flutter 写的 · 2026</div>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
