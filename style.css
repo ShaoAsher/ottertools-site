@@ -893,6 +893,187 @@ a {
   pointer-events: none;
 }
 
+/* ── 自定义控制条：进度 + 拖拽快进 ─────────────────────── */
+.video-ctrl {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: rgba(10, 46, 43, 0.94);
+  border-top: 3.5px solid var(--teal);
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.video-frame.is-idle .video-ctrl {
+  opacity: 0.72;
+}
+
+.vc-btn {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 2.5px solid rgba(175, 249, 243, 0.5);
+  color: var(--mint);
+  cursor: pointer;
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.vc-btn:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--ink);
+}
+
+.vc-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.video-frame .vc-btn .vc-ic-pause {
+  display: none;
+}
+
+.video-frame.is-playing .vc-btn .vc-ic-play {
+  display: none;
+}
+
+.video-frame.is-playing .vc-btn .vc-ic-pause {
+  display: block;
+}
+
+.vc-bar {
+  position: relative;
+  flex: 1;
+  height: 38px;
+  cursor: pointer;
+  touch-action: none;
+  outline: none;
+}
+
+.vc-bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 7px;
+  transform: translateY(-50%);
+  background: rgba(175, 249, 243, 0.22);
+}
+
+.vc-bar:focus-visible::before {
+  box-shadow: 0 0 0 3px rgba(13, 181, 166, 0.45);
+}
+
+.vc-fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 7px;
+  width: 0;
+  transform: translateY(-50%);
+  background: var(--teal);
+  pointer-events: none;
+}
+
+.vc-knob {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  margin-left: -7.5px;
+  transform: translateY(-50%);
+  background: var(--mint);
+  border: 2.5px solid var(--ink);
+  pointer-events: none;
+  transition: transform 0.12s ease;
+}
+
+.vc-bar:hover .vc-knob,
+.vc-bar.is-dragging .vc-knob {
+  transform: translateY(-50%) scale(1.28);
+}
+
+.vc-tip {
+  position: absolute;
+  bottom: 34px;
+  left: 0;
+  padding: 3px 7px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--mint);
+  border: 2px solid var(--ink);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+
+.vc-bar:hover .vc-tip,
+.vc-bar.is-dragging .vc-tip {
+  opacity: 1;
+}
+
+.vc-time {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: var(--f-mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(175, 249, 243, 0.62);
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+.vc-time b {
+  color: var(--mint);
+  font-weight: 700;
+}
+
+.vc-slash {
+  opacity: 0.45;
+}
+
+@media (max-width: 720px) {
+  .video-ctrl {
+    gap: 10px;
+    padding: 9px 11px;
+    border-top-width: 3px;
+  }
+
+  .vc-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .vc-btn-fs {
+    display: none;
+  }
+
+  .vc-time {
+    font-size: 12px;
+  }
+}
+
 .video-note {
   margin-top: 20px;
   font-family: var(--f-mono);

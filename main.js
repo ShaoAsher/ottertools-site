@@ -14,6 +14,7 @@
   var lastSolid = null;
 
   function onScroll() {
+    if (!nav) return;
     var solid = window.scrollY > 24;
     if (solid !== lastSolid) {
       nav.classList.toggle("is-solid", solid);
@@ -102,28 +103,161 @@
     });
   });
 
-  /* ── 4. 视频 ───────────────────────────────────────────── */
+  /* ── 4. 视频：自定义控制条（进度 / 拖拽快进 / 全屏） ──── */
   var video = document.getElementById("promoVideo");
+  var frame = document.getElementById("videoFrame");
   var playBtn = document.getElementById("videoPlay");
+  var vcPlay = document.getElementById("vcPlay");
+  var bar = document.getElementById("vcBar");
+  var fill = document.getElementById("vcFill");
+  var knob = document.getElementById("vcKnob");
+  var tip = document.getElementById("vcTip");
+  var curEl = document.getElementById("vcCur");
+  var durEl = document.getElementById("vcDur");
+  var fsBtn = document.getElementById("vcFs");
 
-  if (video && playBtn) {
-    function start() {
-      video.play();
-      playBtn.classList.add("is-hidden");
+  if (video && frame && bar) {
+    var scrubbing = false;
+    var idleTimer = null;
+
+    function fmt(sec) {
+      if (!isFinite(sec) || sec < 0) sec = 0;
+      var s = Math.floor(sec);
+      return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
     }
 
-    playBtn.addEventListener("click", start);
-    video.addEventListener("click", function () {
-      if (video.paused) start();
+    function paint(t) {
+      var d = video.duration || 0;
+      var p = d > 0 ? Math.min(1, Math.max(0, t / d)) : 0;
+      fill.style.width = p * 100 + "%";
+      knob.style.left = p * 100 + "%";
+      curEl.textContent = fmt(t);
+      bar.setAttribute("aria-valuenow", Math.round(p * 100));
+      bar.setAttribute("aria-valuetext", fmt(t) + " / " + fmt(d));
+    }
+
+    function syncState() {
+      var playing = !video.paused && !video.ended;
+      frame.classList.toggle("is-playing", playing);
+      if (playBtn) playBtn.classList.toggle("is-hidden", playing || video.ended);
+      armIdle();
+    }
+
+    function armIdle() {
+      frame.classList.remove("is-idle");
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(function () {
+        if (!video.paused) frame.classList.add("is-idle");
+      }, 2600);
+    }
+
+    function toggle() {
+      if (video.paused || video.ended) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+
+    video.addEventListener("loadedmetadata", function () {
+      durEl.textContent = fmt(video.duration);
+      paint(video.currentTime);
     });
+    video.addEventListener("timeupdate", function () {
+      if (!scrubbing) paint(video.currentTime);
+    });
+    video.addEventListener("play", syncState);
+    video.addEventListener("pause", syncState);
     video.addEventListener("ended", function () {
-      playBtn.classList.remove("is-hidden");
       video.currentTime = 0;
+      paint(0);
+      syncState();
     });
-    video.addEventListener("pause", function () {
-      if (video.currentTime > 0 && !video.ended) {
-        playBtn.classList.remove("is-hidden");
+    if (video.readyState >= 1) {
+      durEl.textContent = fmt(video.duration);
+      paint(video.currentTime);
+    }
+
+    if (playBtn) playBtn.addEventListener("click", toggle);
+    if (vcPlay) vcPlay.addEventListener("click", toggle);
+    video.addEventListener("click", toggle);
+
+    /* 进度条：点击 / 拖拽 / 触摸 —— 全部走 Pointer Events */
+    function ratioAt(e) {
+      var r = bar.getBoundingClientRect();
+      return Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    }
+
+    function seekTo(ratio) {
+      if (!video.duration) return;
+      video.currentTime = ratio * video.duration;
+      paint(video.currentTime);
+    }
+
+    bar.addEventListener("pointerdown", function (e) {
+      scrubbing = true;
+      bar.classList.add("is-dragging");
+      try {
+        bar.setPointerCapture(e.pointerId);
+      } catch (err) {}
+      seekTo(ratioAt(e));
+      armIdle();
+      e.preventDefault();
+    });
+
+    bar.addEventListener("pointermove", function (e) {
+      var r = ratioAt(e);
+      tip.textContent = fmt(r * (video.duration || 0));
+      tip.style.left = r * 100 + "%";
+      if (scrubbing) seekTo(r);
+    });
+
+    function endScrub(e) {
+      if (!scrubbing) return;
+      scrubbing = false;
+      bar.classList.remove("is-dragging");
+      try {
+        bar.releasePointerCapture(e.pointerId);
+      } catch (err) {}
+      armIdle();
+    }
+    bar.addEventListener("pointerup", endScrub);
+    bar.addEventListener("pointercancel", endScrub);
+
+    bar.addEventListener("keydown", function (e) {
+      var d = video.duration || 0;
+      if (!d) return;
+      var handled = true;
+      if (e.key === "ArrowRight") seekTo(Math.min(1, (video.currentTime + 5) / d));
+      else if (e.key === "ArrowLeft") seekTo(Math.max(0, (video.currentTime - 5) / d));
+      else if (e.key === "Home") seekTo(0);
+      else if (e.key === "End") seekTo(1);
+      else if (e.key === " " || e.key === "Enter") toggle();
+      else handled = false;
+      if (handled) {
+        e.preventDefault();
+        armIdle();
       }
     });
+
+    /* 全屏 */
+    if (fsBtn) {
+      fsBtn.addEventListener("click", function () {
+        var doc = document;
+        if (doc.fullscreenElement || doc.webkitFullscreenElement) {
+          (doc.exitFullscreen || doc.webkitExitFullscreen).call(doc);
+        } else if (frame.requestFullscreen) {
+          frame.requestFullscreen();
+        } else if (frame.webkitRequestFullscreen) {
+          frame.webkitRequestFullscreen();
+        }
+      });
+    }
+
+    frame.addEventListener("mousemove", armIdle);
+    frame.addEventListener("mouseleave", function () {
+      if (!video.paused) frame.classList.add("is-idle");
+    });
+    armIdle();
   }
 })();

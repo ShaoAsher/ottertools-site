@@ -54,7 +54,7 @@
                 />
               </svg>
             </a>
-            <a class="btn btn-ghost btn-lg" href="#video">看 1 分钟介绍</a>
+            <a class="btn btn-ghost btn-lg" href="#video">看 75 秒介绍</a>
           </div>
           <p class="hero-note">没有账号、没有订阅、不弹广告。装上就能用。</p>
         </div>
@@ -96,7 +96,7 @@
         </div>
         <div class="stat">
           <div class="stat-num">⌘K</div>
-          <div class="stat-label">呼出命令面板，直达任意工具</div>
+          <div class="stat-label">叫出命令面板，工具都在里面</div>
         </div>
       </div>
     </section>
@@ -107,7 +107,7 @@
         <header class="sec-head">
           <div class="kicker">它到底能做什么</div>
           <h2>五件事，做得挺细</h2>
-          <p>不是那种“一键加速”然后啥也没变的软件。每一项都能看到具体删了什么、释放了多少。</p>
+          <p>不是那种「一键加速」然后啥也没变的软件。每一项都能看到具体删了什么、释放了多少。</p>
         </header>
 
         <div class="feat-grid">
@@ -167,10 +167,10 @@
               <h3>隐私清理</h3>
               <p>
                 浏览器历史、聊天记录、系统使用痕迹，扫出来一条条列着，你勾哪条它清哪条。
-                谨慎项默认不勾——这个决定权留给你。
+                谨慎项默认不勾。这个决定权留给你。
               </p>
               <ul class="ticks">
-                <li>真扫真清，不是只加个“已清理”的提示</li>
+                <li>真扫真清，不是只加个「已清理」的提示</li>
                 <li>清理前可以预览，清完有操作日志</li>
               </ul>
             </div>
@@ -278,7 +278,7 @@
           <h2>懒得读？看片</h2>
         </header>
 
-        <div class="video-frame">
+        <div class="video-frame" id="videoFrame">
           <video
             id="promoVideo"
             src="assets/video/ottertools-promo.mp4"
@@ -291,8 +291,49 @@
               <path d="M8 5v14l11-7z" fill="currentColor" />
             </svg>
           </button>
+
+          <div class="video-ctrl" id="videoCtrl">
+            <button class="vc-btn" id="vcPlay" aria-label="播放 / 暂停">
+              <svg class="vc-ic-play" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7z" fill="currentColor" />
+              </svg>
+              <svg class="vc-ic-pause" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.5 4h4v16h-4zM13.5 4h4v16h-4z" fill="currentColor" />
+              </svg>
+            </button>
+
+            <div
+              class="vc-bar"
+              id="vcBar"
+              role="slider"
+              tabindex="0"
+              aria-label="播放进度"
+              aria-valuemin="0"
+              aria-valuemax="75"
+              aria-valuenow="0"
+            >
+              <div class="vc-fill" id="vcFill"></div>
+              <div class="vc-knob" id="vcKnob"></div>
+              <span class="vc-tip" id="vcTip">0:00</span>
+            </div>
+
+            <div class="vc-time">
+              <b id="vcCur">0:00</b><span class="vc-slash">/</span><i id="vcDur">1:15</i>
+            </div>
+
+            <button class="vc-btn vc-btn-fs" id="vcFs" aria-label="全屏">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-        <p class="video-note">63 秒 · 无旁白 · 建议开声音（就是几个音效）</p>
+        <p class="video-note">1 分 15 秒 · 中文配音 · 建议开声音</p>
       </div>
     </section>
 
@@ -345,7 +386,7 @@
           <details open>
             <summary>真的免费吗？后面会不会收费？</summary>
             <p>
-              免费。没有内购、没有订阅、没有"高级版"。功能都在，不锁。
+              免费。没有内购、没有订阅、没有「高级版」。功能都在，不锁。
             </p>
           </details>
           <details>
@@ -365,7 +406,7 @@
             <summary>这名字怎么来的？</summary>
             <p>
               OtterTools 直译就是水獭工具。吉祥物是只蜷成一团的水獭，趴在那儿一动不动，
-              顺便表达一下我们希望它替你干活、你继续躺着的态度。
+              顺便说说这软件的脾气：活它干，你躺着。
             </p>
           </details>
           <details>
