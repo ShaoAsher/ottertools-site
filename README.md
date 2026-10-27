@@ -4,7 +4,7 @@ OtterTools 产品落地页。纯静态（HTML + CSS + 原生 JS），没有构�
 
 - 站点（GitHub Pages）：https://shaoasher.github.io/ottertools-site/
 - 仓库：https://github.com/ShaoAsher/ottertools-site
-- 安装包：`assets/水獭工具-1.0.2-arm64.dmg`（已 Developer ID 签名 + Apple 公证），
+- 安装包：`assets/水獭工具-1.1.0-arm64.dmg`（已 Developer ID 签名 + Apple 公证），
   同时发在 Releases：https://github.com/ShaoAsher/ottertools-site/releases/latest/download/OtterTools-macos-arm64.dmg
 
 > 本仓只放官网与安装包，**不含 App 源码**。
@@ -19,7 +19,7 @@ ottertools-site/
 └─ assets/
    ├─ img/               截图、logo、吉祥物
    ├─ video/             宣传片（63s，来自 ottertools-promo）
-   └─ 水獭工具-1.0.2-arm64.dmg   下载按钮指向的安装包
+   └─ 水獭工具-1.1.0-arm64.dmg   下载按钮指向的安装包
 ```
 
 ## 本地预览
@@ -38,7 +38,7 @@ python3 -m http.server 8899
 |---|---|
 | 文案 | `index.html`，中文都在标签里，没有模板变量 |
 | 配色 | `style.css` 顶部 `:root`，`--ink` `--teal` `--mint` 三个是主色 |
-| 下载链接 | `index.html` 里 `href="assets/水獭工具-1.0.2-arm64.dmg"`，换版本时改文件名 |
+| 下载链接 | `index.html` 里 `href="assets/水獭工具-1.1.0-arm64.dmg"`，换版本时改文件名 |
 | 主题展示截图 | `assets/img/theme_fresh.jpg` / `theme_cyber.jpg` / `theme_midnight.jpg` / `theme_system.jpg` |
 | 视频 | 覆盖 `assets/video/ottertools-promo.mp4` 即可 |
 
@@ -49,6 +49,6 @@ python3 -m http.server 8899
 
 ## 上线前记得
 
-- [ ] 换掉 DMG（当前是 1.0.2 arm64，Intel 版还没打）
+- [ ] 换掉 DMG（当前是 1.1.0 arm64，Intel 版还没打）
 - [ ] Windows 版按钮现在是禁用态，打包好之后替换
 - [ ] 加真实域名 / 统计代码（现在没有任何第三方脚本）
