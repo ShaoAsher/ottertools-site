@@ -18,7 +18,7 @@ ottertools-site/
 ├─ main.js               滚动变实底、区块入场、主题切换、视频播放
 └─ assets/
    ├─ img/               截图、logo、吉祥物
-   ├─ video/             宣传片（63s，来自 ottertools-promo）
+   ├─ video/             宣传片（62s，来自 ottertools-promo-v4）
    └─ 水獭工具-1.1.0-arm64.dmg   下载按钮指向的安装包
 ```
 
