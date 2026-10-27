@@ -584,7 +584,8 @@ a {
   box-shadow: 6px 6px 0 var(--mint);
   overflow: hidden;
   background: var(--paper);
-  aspect-ratio: 16 / 10.6;
+  /* 截图是 1550×972（约 16:10），框子按同一比例留，避免裁掉左右两侧的侧栏。 */
+  aspect-ratio: 16 / 10;
 }
 
 .feat-shot img {
