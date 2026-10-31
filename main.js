@@ -60,21 +60,17 @@
 
   /* ── 3. 主题切换 ───────────────────────────────────────── */
   var THEMES = {
-    fresh: {
-      shot: "assets/img/theme_fresh.jpg",
-      caption: "清新简约 · 白卡片、青绿色、字看得清",
+    light: {
+      shot: "assets/img/home_light.jpg",
+      caption: "浅色 · 冷银底、白卡片、字看得清",
     },
-    cyber: {
-      shot: "assets/img/theme_cyber.jpg",
-      caption: "赛博科技 · 深空底、霓虹描边、夜里不刺眼",
-    },
-    midnight: {
-      shot: "assets/img/theme_midnight.jpg",
-      caption: "午夜蓝 · 深蓝底配冷光，屏幕看着不累",
+    dark: {
+      shot: "assets/img/home.jpg",
+      caption: "深色 · 近黑底、只有一点电光青，夜里不刺眼",
     },
     system: {
-      shot: "assets/img/theme_system.jpg",
-      caption: "跟随系统 · 白天清新、入夜自动切深色",
+      shot: "assets/img/home_light.jpg",
+      caption: "跟随系统 · 白天浅色，入夜自动转深",
     },
   };
 

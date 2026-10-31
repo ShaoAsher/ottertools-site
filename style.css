@@ -673,7 +673,8 @@ a {
 
 .theme-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* 现在只有三档：浅色 / 深色 / 跟随系统 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
   margin-bottom: 40px;
 }
@@ -743,34 +744,28 @@ a {
   opacity: 0.3;
 }
 
-.tc-fresh {
+.tc-light {
   color: var(--ink);
-  background: #f8fcfb;
+  background: #eef1f7;
 }
 
-.tc-cyber {
-  color: #edf6ff;
-  background: #081020;
-}
-
-.tc-cyber .tc-ring {
-  border-color: #00e8ff;
+.tc-light .tc-ring {
+  border-color: #00779f;
   border-right-color: transparent;
-  box-shadow: 0 0 14px rgba(0, 232, 255, 0.55);
 }
 
-.tc-midnight {
-  color: #a9bdd8;
-  background: #070b16;
+.tc-dark {
+  color: #e7ecf5;
+  background: #06070b;
 }
 
-.tc-midnight .tc-ring {
-  border-color: #3b82f6;
+.tc-dark .tc-ring {
+  border-color: #4fd8ff;
   border-right-color: transparent;
 }
 
 .tc-system {
-  background: linear-gradient(105deg, #f8fcfb 0 50%, #081020 50% 100%);
+  background: linear-gradient(105deg, #eef1f7 0 50%, #06070b 50% 100%);
   color: rgba(255, 255, 255, 0.5);
   position: relative;
 }
