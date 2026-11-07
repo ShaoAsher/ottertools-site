@@ -198,7 +198,7 @@ const SPANE = {
       <div style="display:flex;gap:8px;justify-content:center;margin-top:12px"><button class="ghost" data-act="flashMsg" data-arg="已是最新版本">检查更新</button><button class="ghost" data-act="flashMsg" data-arg="已打开更新日志">更新日志</button><button class="ghost" data-act="flashMsg" data-arg="已打开反馈页">反馈</button></div></div>
     ${aboutIntro}${familyHtml()}<div class="muted" style="text-align:center;margin-top:14px">© 2026 水獭家族 · 石头罐里 ${S.pebbles} 颗石子，一共帮你清掉 ${S.freed.toFixed(1)} GB</div>`,
 };
-const familyHtml = () => `<button class="famlink" data-act="familySite"><span class="ics"><img src="brand/family_gametime.png" alt=""><img src="brand/tools_icon.png" alt=""><img src="brand/otter_git_icon.png" alt=""></span><span class="tx"><b>水獭家族</b><span>看看小獭的其他作品</span></span><svg class="go" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></button>`;
+const familyHtml = () => `<button class="famlink" data-act="familySite"><span class="ics"><i></i></span><span class="tx"><b>水獭家族</b><span>看看小獭的其他作品</span></span><svg class="go" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></button>`;
 const aboutIntro = '<div class="tg" style="margin-top:12px;line-height:1.6">水位是磁盘、浑浊是垃圾、波速是 CPU、水温是内存，看一眼水面就懂电脑。清理都进废纸篓，小獭动手之前先问你。免费，不用注册。</div>';
 ACTS.familySite = () => window.open('https://shaoasher.github.io/otter-family-site/?from=ottertools#members', '_blank', 'noopener');
 function sMain() {
