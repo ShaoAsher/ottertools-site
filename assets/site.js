@@ -210,6 +210,25 @@
   steps.forEach(function (s) { stepIO.observe(s); });
 
   /* ── 浅色 / 深色对比 ── */
+  var promo = $("#promo");
+  $$(".chapters a").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var t = +a.dataset.t;
+      var seek = function () {
+        promo.currentTime = t;
+        promo.play().catch(function () {});
+      };
+      if (promo.readyState >= 1) seek();
+      else {
+        promo.addEventListener("loadedmetadata", seek, { once: true });
+        promo.preload = "auto";
+        promo.load();
+      }
+      promo.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+    });
+  });
+
   var compare = $("#compare");
   $("input", compare).addEventListener("input", function (e) {
     compare.style.setProperty("--p", e.target.value + "%");

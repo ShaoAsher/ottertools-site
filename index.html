@@ -856,6 +856,18 @@
     .compare .lab.d { right: 14px; }
     .compare:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 4px; }
 
+    /* ── 短片 ── */
+    .film video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+    .chapters { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+    .chapters a {
+      display: block; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--r-sm);
+      font-size: 14px; color: var(--ink); transition: border-color .15s, background-color .15s;
+    }
+    .chapters a span { display: block; font: 500 12px/1.4 var(--mono); color: var(--mute); }
+    @media (hover: hover) {
+      .chapters a:hover { border-color: var(--line-2); background: var(--card); }
+    }
+
     /* ── 下载 ── */
     .dl { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
@@ -1006,6 +1018,7 @@
       .moment, .ai-grid, .feat, .feat.tall, .demo { grid-template-columns: 1fr; }
       .feat:nth-child(even) .feat-copy { order: 0; }
       .grid-3 { grid-template-columns: 1fr 1fr; }
+      .chapters { grid-template-columns: repeat(3, 1fr); }
     }
 
     @media (max-width: 720px) {
@@ -1013,6 +1026,7 @@
       .nav-links a:not(.btn) { display: none; }
       .stats { grid-template-columns: 1fr 1fr; }
       .grid-3, .dl { grid-template-columns: 1fr; }
+      .chapters { grid-template-columns: 1fr 1fr; }
       .vlist a { grid-template-columns: 64px 1fr; }
       .vlist .vt { grid-column: 1 / -1; }
       .appcard { grid-template-columns: auto 1fr; }
@@ -1045,6 +1059,7 @@
         水獭工具 <small>OTTERTOOLS</small>
       </a>
       <nav class="nav-links" aria-label="站内导航">
+        <a href="#film">短片</a>
         <a href="#states">水面</a>
         <a href="#otter">小獭</a>
         <a href="#demo">在线试用</a>
@@ -1089,6 +1104,7 @@
             </svg>
             在线试用
           </a>
+          <a class="btn" href="#film">看短片</a>
         </div>
         <ul class="hero-meta" data-in>
           <li>免费，不用注册</li>
@@ -1113,6 +1129,33 @@
           <div class="stat rise"><b><span data-count="9">9</span><small>个</small></b><span>生活向快捷操作，定时睡觉、Wi‑Fi 给客人</span></div>
           <div class="stat rise"><b>0</b><span>不用注册账号，没有订阅，也没有广告</span></div>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ 短片 ============ -->
+    <section class="sec" id="film" data-tone="dawn" aria-labelledby="film-title">
+      <div class="wrap">
+        <div class="sec-head rise">
+          <p class="eyebrow">短片 · 2 分钟</p>
+          <h2 id="film-title">电脑也会累，<br />只是它不会说。</h2>
+          <p class="lede">从一个卡住的深夜讲起，讲小獭怎么替你守着电脑。中文配音，画面里有字幕，点章节可以直接跳过去。</p>
+        </div>
+        <div class="frame film rise">
+          <video id="promo" controls playsinline preload="none" poster="assets/film-poster.jpg" width="1920" height="1080"
+            aria-label="水獭工具 2.0 宣传片，2 分 22 秒，中文配音">
+            <source src="assets/ottertools-promo.mp4" type="video/mp4" />
+            <track kind="captions" srclang="zh" label="中文" src="assets/ottertools-promo.zh.vtt" />
+            你的浏览器放不了内嵌视频，可以<a href="assets/ottertools-promo.mp4">直接下载</a>观看。
+          </video>
+        </div>
+        <ol class="chapters rise" aria-label="短片章节">
+          <li><a href="#film" data-t="0"><span>00:00</span>那些卡住的瞬间</a></li>
+          <li><a href="#film" data-t="27"><span>00:27</span>小獭来了</a></li>
+          <li><a href="#film" data-t="38.5"><span>00:38</span>看水就懂</a></li>
+          <li><a href="#film" data-t="62"><span>01:02</span>一键养护</a></li>
+          <li><a href="#film" data-t="88.5"><span>01:28</span>问小獭</a></li>
+          <li><a href="#film" data-t="109"><span>01:49</span>生活小事</a></li>
+        </ol>
       </div>
     </section>
 
