@@ -172,7 +172,7 @@ const mseg = (key, opts) => `<div class="mini-seg">${opts.map((o) => `<button cl
 const ssw = (key) => sw(SET[key], 'setSw', key);
 const SPANE = {
   general: () => `<div class="slabel">启动</div><div class="sgroup">${srow('power', '#6EE7A8', '开机时启动', '登录后小獭在菜单栏待命', ssw('login'))}${srow('up', '#9B8BE8', '关掉窗口后留在菜单栏', '关掉了也能从菜单栏打开', ssw('stay'))}</div>
-    <div class="slabel">语言与更新</div><div class="sgroup">${srow('dns', '#5FC9E8', '语言', '', mseg('lang', ['简体中文', 'English']))}${srow('refresh', '#E8B04B', '自动检查更新', '当前 v2.0.3 · 已是最新', ssw('upd'))}</div>
+    <div class="slabel">语言与更新</div><div class="sgroup">${srow('dns', '#5FC9E8', '语言', '', mseg('lang', ['简体中文', 'English']))}${srow('refresh', '#E8B04B', '自动检查更新', '当前 v2.0.4 · 已是最新', ssw('upd'))}</div>
     <div class="slabel">数据</div><div class="sgroup">${srow('dl', '#8A94A6', '导出设置', '清理范围、白名单和快捷键', '<button class="ghost" data-act="flashMsg" data-arg="设置已导出到「下载」">导出</button>')}${srow('refresh', '#FF6B6B', '恢复默认设置', '石头罐和清理记录会保留', '<button class="ghost" data-act="setReset" style="color:var(--alarm)">恢复默认</button>')}</div>`,
   look: () => `<div class="slabel">主题</div><div class="sgroup">${srow('moon', '#9B8BE8', '外观', '跟随系统时，晚上自动变暗', `<div class="mini-seg">${[['auto', '跟随系统'], ['night', '夜间'], ['day', '白天']].map(([k, t]) => `<button class="${(k === S.theme) ? 'on' : ''}" data-act="setTheme" data-arg="${k}">${t}</button>`).join('')}</div>`)}
       ${srow('drop', '#FF8A3D', '强调色', '水獭工具固定用獭橙，和家族里的其他产品区分开', '<span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#FA5A1E,#FFB04A)"></span>')}</div>
@@ -194,7 +194,7 @@ const SPANE = {
       ${srow('lock', '#5FC9E8', 'API Key', aiNoModel ? '还没填' : '存在钥匙串里', `<div class="srch" style="min-width:220px"><input value="${aiNoModel ? '' : 'ark-••••••••••••3f9a'}" placeholder="粘贴 API Key"></div>`)}
       ${srow('spark', '#E8B04B', '模型', '', `<span class="chip on">Doubao‑Seed‑1.6 ▾</span>`)}${srow('', '', '', '', `<button class="ghost" data-act="aiTest">测试连接</button>`)}</div>
     <div class="slabel">小獭能做什么</div><div class="sgroup">${srow('eye', '#6EE7A8', '读取本机状态', '内存、磁盘、启动项、电池、网络', ssw('aiRead'))}${srow('hand', '#FF6B6B', '动手前先问你', '清理、结束进程这类操作，每次都会弹确认卡', tag(`${I('lock').replace('class="i"', 'class="i" style="width:10px;height:10px"')}一直开启`, 'acc'))}</div>`,
-  about: () => `<div style="text-align:center;padding:10px 0 4px"><img src="brand/tools_icon.png" data-act="aboutLogo" style="width:96px;height:96px;cursor:pointer" alt=""><h2 style="font-size:20px;font-weight:800;margin-top:10px">水獭工具</h2><div class="muted">v2.0.3（2611）· 小獭帮你看着这台 Mac</div>
+  about: () => `<div style="text-align:center;padding:10px 0 4px"><img src="brand/tools_icon.png" data-act="aboutLogo" style="width:96px;height:96px;cursor:pointer" alt=""><h2 style="font-size:20px;font-weight:800;margin-top:10px">水獭工具</h2><div class="muted">v2.0.4（2612）· 小獭帮你看着这台 Mac</div>
       <div style="display:flex;gap:8px;justify-content:center;margin-top:12px"><button class="ghost" data-act="flashMsg" data-arg="已是最新版本">检查更新</button><button class="ghost" data-act="flashMsg" data-arg="已打开更新日志">更新日志</button><button class="ghost" data-act="flashMsg" data-arg="已打开反馈页">反馈</button></div></div>
     ${aboutIntro}${familyHtml()}<div class="muted" style="text-align:center;margin-top:14px">© 2026 水獭家族 · 石头罐里 ${S.pebbles} 颗石子，一共帮你清掉 ${S.freed.toFixed(1)} GB</div>`,
 };
@@ -209,7 +209,7 @@ function sKnot() { const on = $('.settings .ni.on'), k = $('.settings .knot'); i
 ACTS.settings = (pane) => {
   if (pane && SPANE[pane]) sPane = pane;
   ACTS.palClose(); ACTS.trayClose();
-  openDlg(`<div class="snav"><div class="home-card"><img src="brand/tools_icon.png" alt=""><div><b>水獭工具</b><span class="v">v2.0.3 · 水獭家族</span></div></div>
+  openDlg(`<div class="snav"><div class="home-card"><img src="brand/tools_icon.png" alt=""><div><b>水獭工具</b><span class="v">v2.0.4 · 水獭家族</span></div></div>
       <div class="navlist"><span class="rail"></span><span class="knot"></span>${SPANES.map(([k, t, ic, c]) => `<div class="ni${k === sPane ? ' on' : ''}" data-act="sPane" data-arg="${k}" style="--c:${c}"><span class="b">${I(ic)}</span>${t}</div>`).join('')}</div></div>
     <div class="smain">${sMain()}</div>`, 'settings');
   requestAnimationFrame(sKnot);
@@ -230,7 +230,7 @@ ACTS.aiTest = async (a, el) => { el.innerHTML = '<span class="spin"></span>连�
 ACTS.about = () => {
   openDlg(`<button class="ibs xbtn" data-act="close">${I('x')}</button>
     <div class="logo" id="abLogo" data-act="aboutLogo" style="position:relative;cursor:pointer"><img class="l1" src="brand/tools_icon.png" style="width:120px;height:120px;position:absolute;inset:0" alt=""></div>
-    <h2>水獭工具</h2><div class="tg">小獭帮你看着这台 Mac</div><div class="muted num" style="margin-top:4px">v2.0.3（2611）· macOS 14 及以上</div>
+    <h2>水獭工具</h2><div class="tg">小獭帮你看着这台 Mac</div><div class="muted num" style="margin-top:4px">v2.0.4（2612）· macOS 14 及以上</div>
     ${aboutIntro}${familyHtml()}<div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="ghost" data-act="flashMsg" data-arg="已是最新版本">检查更新</button><button class="ghost" data-act="flashMsg" data-arg="已打开官网">官网</button><button class="ghost" data-act="close">关闭</button></div>
     <div class="muted" style="margin-top:12px;font-size:11.5px">点图标可以再看一次小獭醒来</div>`, 'about');
   ACTS.aboutLogo();
