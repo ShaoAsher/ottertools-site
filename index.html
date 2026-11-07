@@ -988,6 +988,9 @@
     }
 
     .appcard .mark { display: block; width: 64px; height: 64px; }
+    .appcard .trio { display: flex; }
+    .appcard .trio img { display: block; width: 40px; height: 40px; margin-left: -12px; border-radius: 9px; box-shadow: -4px 0 10px -4px rgba(0, 0, 0, .55); }
+    .appcard .trio img:first-child { margin-left: 0; }
     .appcard p { margin: 6px 0 0; font-size: 14.5px; }
     .appcard .meta { font-size: 13px; color: var(--mute); }
     .appcard .go { font-size: 14px; color: var(--accent); white-space: nowrap; }
@@ -1078,7 +1081,7 @@
         <button type="button" class="greet" id="greet" data-in aria-label="小獭的问候，点一下换一句">
           <img src="demo/expr/hi.webp" alt="" width="30" height="30" />
           <span id="greet-text">你好，我是小獭</span>
-          <span class="v">v2.0.2</span>
+          <span class="v">v2.0.3</span>
         </button>
 
         <h1 id="hero-title"><span class="w" data-in>看看水面，</span><span class="w" data-in><em>就懂电脑</em>。</span></h1>
@@ -1506,13 +1509,13 @@
         </div>
         <div class="dl">
           <article class="dl-card rise" id="dl-mac">
-            <div class="os"><h3>macOS 版</h3><span class="ver">v2.0.2</span><span class="yours">你的系统</span></div>
+            <div class="os"><h3>macOS 版</h3><span class="ver">v2.0.3</span><span class="yours">你的系统</span></div>
             <p class="req">macOS 12 及以上，Apple Silicon（M 系列芯片）</p>
             <p>DMG 安装包，把「水獭工具」拖进「应用程序」即可。已签名、已通过 Apple 公证，首次打开不会被系统拦截。从 1.x 升级直接替换就行。</p>
             <a class="btn btn-accent" href="https://github.com/ShaoAsher/ottertools-site/releases/latest/download/OtterTools-macos-arm64.dmg" target="_blank" rel="noopener">下载 macOS 版</a>
           </article>
           <article class="dl-card rise" id="dl-win">
-            <div class="os"><h3>Windows 预览版</h3><span class="ver">v2.0.2</span><span class="yours">你的系统</span></div>
+            <div class="os"><h3>Windows 预览版</h3><span class="ver">v2.0.3</span><span class="yours">你的系统</span></div>
             <p class="req">Windows 10（1809 及以上）/ 11，x64</p>
             <p>安装包双击运行，会自动在桌面和开始菜单放好快捷方式；不想安装也可以用 <a class="hl" href="https://github.com/ShaoAsher/ottertools-site/releases/latest/download/OtterTools-windows-x64.zip" target="_blank" rel="noopener">免安装 zip 版</a>。预览版尚未代码签名，SmartScreen 拦截时点「更多信息」，再点「仍要运行」。关掉窗口会收进托盘，右键托盘图标可以退出。</p>
             <a class="btn" href="https://github.com/ShaoAsher/ottertools-site/releases/latest/download/OtterTools-windows-x64-setup.exe" target="_blank" rel="noopener">下载 Windows 预览版</a>
@@ -1529,6 +1532,7 @@
             <a href="https://github.com/ShaoAsher/ottertools-site/releases" target="_blank" rel="noopener">在 GitHub 上查看全部版本 →</a>
           </div>
           <ol class="vlist">
+            <li><a href="https://github.com/ShaoAsher/ottertools-site/releases/tag/v2.0.3" target="_blank" rel="noopener"><b>v2.0.3</b><span class="vd">11-07</span><span class="vt">关于页只介绍水獭工具自己，「水獭家族」改为一个入口，点开在浏览器里看水獭家族官网。家族成员「游时记」更名为「水獭游时」。</span></a></li>
             <li><a href="https://github.com/ShaoAsher/ottertools-site/releases/tag/v2.0.2" target="_blank" rel="noopener"><b>v2.0.2</b><span class="vd">11-07</span><span class="vt">Windows 版修复：浅色主题下标题栏变黑、看不见最小化和最大化按钮；托盘浮窗打开后一片空白。</span></a></li>
             <li><a href="https://github.com/ShaoAsher/ottertools-site/releases/tag/v2.0.1" target="_blank" rel="noopener"><b>v2.0.1</b><span class="vd">11-07</span><span class="vt">设置里的二级页（模型设置、权限引导等）统一样式，关掉回到原来的位置；Windows 版补齐垃圾清理、Wi‑Fi 密码、电池温度、网络测速和开机启动管理，修好托盘乱码和窗口黑框，新增安装包、桌面快捷方式和退出按钮。</span></a></li>
             <li><a href="https://github.com/ShaoAsher/ottertools-site/releases/tag/v2.0.0" target="_blank" rel="noopener"><b>v2.0.0</b><span class="vd">11-07</span><span class="vt">整体重做：首页变成一片水，水位、浑浊、波速、水温对应磁盘、垃圾、CPU、内存；小獭助手动手前先出确认卡；工具箱改成生活向，新增定时睡觉、Wi‑Fi 给客人、截图识字、擦屏幕；Windows 预览版首发；主色换成獭橙。</span></a></li>
@@ -1582,18 +1586,22 @@
       </div>
     </section>
 
-    <!-- ============ 08 其他软件 ============ -->
+    <!-- ============ 08 水獭家族 ============ -->
     <section class="sec" id="more" aria-labelledby="more-title" style="padding-top: 0">
       <div class="wrap">
-        <h2 id="more-title" class="rise" style="font-size: 22px; margin-bottom: 20px">作者的其他软件</h2>
-        <a class="appcard rise" href="https://shaoasher.github.io/ottergit-site/" target="_blank" rel="noopener">
-          <img class="mark" src="assets/ottergit_icon.png" alt="" width="64" height="64" loading="lazy" />
+        <h2 id="more-title" class="rise" style="font-size: 22px; margin-bottom: 20px">水獭家族</h2>
+        <a class="appcard rise" href="https://shaoasher.github.io/otter-family-site/?from=ottertools#members" target="_blank" rel="noopener">
+          <span class="trio" aria-hidden="true">
+            <img src="assets/gametime_icon.png" alt="" width="44" height="44" loading="lazy" />
+            <img src="assets/ottertools_icon.png" alt="" width="44" height="44" loading="lazy" />
+            <img src="assets/ottergit_icon.png" alt="" width="44" height="44" loading="lazy" />
+          </span>
           <div>
-            <h3>水獭 Git OtterGit</h3>
-            <span class="meta">免费 · macOS 和 Windows</span>
-            <p>分支、历史、改动和冲突在同一个窗口里看清楚；小獭 AI 助手先说明、再确认、后执行。</p>
+            <h3>同一只小獭，三个软件</h3>
+            <span class="meta">水獭游时 · 水獭工具 · 水獭 Git</span>
+            <p>记录游戏时间、照看 Mac、管好代码仓库。三个软件都在家族官网上，各有一段简介。</p>
           </div>
-          <span class="go">访问水獭 Git 官网 →</span>
+          <span class="go">访问水獭家族官网 →</span>
         </a>
       </div>
     </section>
@@ -1607,6 +1615,7 @@
         <a href="#demo">在线试用</a>
         <a href="#download">下载</a>
         <a href="https://shaoasher.github.io/ottergit-site/" target="_blank" rel="noopener">水獭 Git</a>
+        <a href="https://shaoasher.github.io/otter-family-site/?from=ottertools" target="_blank" rel="noopener">水獭家族</a>
       </nav>
       <p>© 2026 水獭工具 · OtterTools · Asher_Shao<br />macOS · Windows · 免费 · 无广告</p>
     </div>
