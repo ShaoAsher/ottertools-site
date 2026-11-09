@@ -36,9 +36,9 @@ const P = {
 };
 const I = (n, cls = 'i') => `<svg class="${cls}" viewBox="0 0 24 24">${P[n]}</svg>`;
 
-/* ── 表情（家族 36 表情；有动图的用动图） ─────────────────── */
-const ANIM = new Set('hi calm happy proud clear bath focus think scared sleepy cheer relief grind highlight morning night'.split(' '));
-const ex = (n, still) => (ANIM.has(n) && !still && !RM() ? `expr/${n}.webp` : `expr/${n}_s.webp`);
+/* ── 表情（家族 50；全量动图，减弱动效时用 _s 静帧） ───────── */
+const ANIM = new Set('great happy hi calm love proud cheer relief focus think shy laugh ok hug please shock speechless grr cry scared rot sleepy gacha clear highlight rank coop abyss story farm grind night queue gg solo walk friends cafe milktea movie music cook fish study sport bath trip nap morning goodnight'.split(' '));
+const ex = (n, still) => (ANIM.has(n) && !still && !RM() ? `assets/otter/expr/${n}.webp` : `assets/otter/expr/${n}_s.webp`);
 
 /* ── 状态 ─────────────────────────────────────────────── */
 const PRESETS = {
@@ -634,7 +634,9 @@ addEventListener('keydown', (e) => {
   if (e.metaKey && e.key === ',') { e.preventDefault(); ACTS.settings(); }
   if (e.key === 'Escape') { if ($('#pal').classList.contains('on')) ACTS.palClose(); else if ($('#tray').classList.contains('on')) ACTS.trayClose(); else closeDlg(); }
   if (document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
-  if (!e.metaKey && !e.ctrlKey && /^[1-8]$/.test(e.key) && !scrim.classList.contains('on') && S.page === 'home') $$('#tools .tl')[+e.key - 1].click();
+  if (!(e.metaKey || e.ctrlKey) || !e.shiftKey || !/^[1-8]$/.test(e.key) || scrim.classList.contains('on') || S.page !== 'home') return;
+  e.preventDefault();
+  $$('#tools .tl')[+e.key - 1].click();
 });
 
 /* ── 启动（大动效 · 冷启动） ─────────────────────────── */
