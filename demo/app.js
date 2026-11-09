@@ -44,7 +44,7 @@ const ex = (n, still) => (ANIM.has(n) && !still && !RM() ? `assets/otter/expr/${
 const PRESETS = {
   calm: { cpu: 23, mem: 9.9, memTone: 'calm', disk: 0.63, junk: 12.4, score: 86, label: '状态良好', sc: 'ok', expr: 'calm', tone: 'calm', toneText: '平静 · 一切正常',
     say: '水挺清的，顺手清掉 12.4 GB 吧。', bubble: '水挺清的～<br>顺手清掉 <b>12.4 GB</b> 吗？', fact: '可清理 12.4 GB，内存平稳，有 3 项可以优化。', contrib: [92, 74, 96, 81] },
-  busy: { cpu: 78, mem: 13.6, memTone: 'busy', disk: 0.66, junk: 14.1, score: 72, label: '有点忙', sc: 'busy', expr: 'grind', tone: 'busy', toneText: '忙碌 · CPU 78%',
+  busy: { cpu: 78, mem: 13.6, memTone: 'busy', disk: 0.66, junk: 14.1, score: 72, label: '有点忙', sc: 'busy', expr: 'focus', tone: 'busy', toneText: '忙碌 · CPU 78%',
     say: 'Xcode 正在编译，我帮你盯着。', bubble: '水有点急……<br>Xcode 正在编译', fact: 'CPU 78%，内存 13.6 / 16 GB，有 4 项可以优化。', contrib: [58, 72, 96, 79] },
   alarm: { cpu: 94, mem: 15.4, memTone: 'alarm', disk: 0.68, junk: 15.0, score: 54, label: '需要处理', sc: 'alarm', expr: 'scared', tone: 'alarm', toneText: '告急 · 内存紧张',
     say: '内存快撑不住了，先释放一下？', bubble: '内存快满了！<br>先<b>释放内存</b>吧', fact: '内存 15.4 / 16 GB，2 个应用无响应，有 6 项可以优化。', contrib: [31, 70, 96, 78] },
@@ -463,7 +463,7 @@ async function runCare() {
       careStep('dns', 'run', '正在刷新 DNS 缓存……', 'focus');
       await wait(0.9);
     } else if (s.k === 'trash') {
-      careStep('trash', 'run', '正在清空废纸篓……', 'grind');
+      careStep('trash', 'run', '正在清空废纸篓……', 'focus');
       await wait(1.1);
       S.disk -= 2.3 / 494; freedNow += 2.3;
     } else {
